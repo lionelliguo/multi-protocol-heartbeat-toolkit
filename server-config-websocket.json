@@ -1,0 +1,42 @@
+{
+  "_help": {
+    "modes": {
+      "raw": "Raw TCP mode. Application payload is sent over a plain TCP connection.",
+      "websocket": "WebSocket mode over TCP. Payload is exchanged using WebSocket frames.",
+      "http": "HTTP request/response mode. Normal traffic uses /hello. Heartbeat uses GET /__hb?seq=&ts= (short-lived Connection: close).",
+      "http-sse": "HTTP Server-Sent Events (SSE) mode. Heartbeat is server-push only on GET /__hb/sse (text/event-stream). Normal traffic may run in parallel via /hello."
+    },
+    "heartbeat_directions": {
+      "client-only": "Client initiates heartbeat messages (PING) and the server replies (PONG).",
+      "server-only": "Server initiates heartbeat messages/events and the client only monitors.",
+      "bidirectional": "Both client and server may initiate heartbeat messages. Use seq pairing; ts always means the sender's send time."
+    },
+    "direction_constraints": {
+      "http": "For this project implementation, heartbeat.direction must be client-only on both client and server, otherwise the program exits.",
+      "http-sse": "For this project implementation, heartbeat.direction must be server-only on both client and server, otherwise the program exits."
+    },
+    "ts_definition": {
+      "rule": "ts always represents the sender's send timestamp in milliseconds.",
+      "notes": [
+        "RTT can only be computed when a request-response exchange exists (raw/websocket/http).",
+        "In http-sse mode, ts is the server send time used by the client to compute lag = now - ts."
+      ]
+    }
+  },
+  "daemon-mode": true,
+  "mode": "websocket",
+  "listen-ip": "0.0.0.0",
+  "port": 9000,
+  "tcp-keep-alive": false,
+  "raw": {
+    "recv-timeout-sec": 5,
+    "keep-alive-max-messages": 0
+  },
+  "heartbeat": {
+    "enable": true,
+    "direction": "client-only",
+    "interval-ms": 3000,
+    "timeout-ms": 5000,
+    "max-missed": 3
+  }
+}
