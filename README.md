@@ -2,7 +2,7 @@
 // Author: Lionel Guo
 // Email: lionelliguo@gmail.com
 
-# multi-protocol-heartbeat-toolkit
+# Multi-protocol heartbeat toolkit
 
 A lightweight C++ toolkit for experimenting with **heartbeat mechanisms, connection liveness, and timing semantics**
 across multiple transport and application-layer protocols.
@@ -20,7 +20,7 @@ It focuses on **how heartbeats are initiated, delivered, and measured**, rather 
 
 ## Project Overview
 
-`multi-protocol-heartbeat-toolkit` allows you to run the same logical heartbeat concepts over different protocol stacks and observe:
+`Multi-protocol heartbeat toolkit` allows you to run the same logical heartbeat concepts over different protocol stacks and observe:
 
 - Client-initiated vs server-initiated heartbeats
 - Bidirectional heartbeat exchanges
