@@ -4,8 +4,6 @@
 
 # multi-protocol-heartbeat-toolkit
 
-English | [简体中文](README.zh-CN.md)
-
 A lightweight C++ toolkit for experimenting with **heartbeat mechanisms, connection liveness, and timing semantics**
 across multiple transport and application-layer protocols.
 
